@@ -1,0 +1,14 @@
+[
+    { "title": "Codenames",         "minPlayers": 2, "maxPlayers": 8,  "minutes": 15,   "kind": "party" },
+    { "title": "Just One",          "minPlayers": 3, "maxPlayers": 7,  "minutes": 20,   "kind": "party" },
+    { "title": "7 Wonders",         "minPlayers": 3, "maxPlayers": 7,  "minutes": 30,   "kind": "strategy" },
+    { "title": "Azul",              "minPlayers": 2, "maxPlayers": 4,  "minutes": 35,   "kind": "abstract" },
+    { "title": "Ticket to Ride",    "minPlayers": 2, "maxPlayers": 5,  "minutes": 45,   "kind": "family" },
+    { "title": "Pandemic",          "minPlayers": 2, "maxPlayers": 4,  "minutes": 45,   "kind": "co-op" },
+    { "title": "Wingspan",          "minPlayers": 1, "maxPlayers": 5,  "minutes": 60,   "kind": "strategy" },
+    { "title": "Catan",             "minPlayers": 3, "maxPlayers": 4,  "minutes": 90,   "kind": "strategy" },
+    { "title": "Brass: Birmingham", "minPlayers": 2, "maxPlayers": 4,  "minutes": 120,  "kind": "heavy" },
+    { "title": "Spirit Island",     "minPlayers": 1, "maxPlayers": 4,  "minutes": 120,  "kind": "co-op" },
+    { "title": "Hues and Cues",     "minPlayers": 3, "maxPlayers": 10, "minutes": null, "kind": "party" },
+    { "title": "Gloomhaven",        "minPlayers": 1, "maxPlayers": 4,  "minutes": null, "kind": "campaign" }
+]
