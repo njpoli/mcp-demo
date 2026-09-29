@@ -1,27 +1,40 @@
-// One tool, no arguments. Inspect it: npm run inspect
+// The tool takes arguments now, described once in Zod. Inspect it: npm run inspect
 //
-// A Tools section has appeared that wasn't there last branch, and registering
-// the tool is what made the server advertise one. No route table, no manifest,
-// no hand-written schema — a tool is a function you registered.
-//
-// (Switched branches with the Inspector already open? Toggle the connection off
-// and back on. The tool list is read once, at connect time.)
+// That one schema does three jobs: it becomes the JSON Schema the model is
+// shown, it validates every incoming call before the handler runs, and it types
+// the handler's arguments. Try direction=backward count=3, then count=99.
 
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
+import * as z from 'zod/v4';
 
 function createServer(): McpServer {
     const server = new McpServer({ name: 'gameshelf', version: '1.0.0' });
 
     server.registerTool(
-        'do-a-barrel-roll',
+        'do-a-flip',
         {
-            title: 'Do a barrel roll',
-            description: 'Performs a single celebratory barrel roll and reports back.',
-            annotations: { readOnlyHint: true, idempotentHint: true }
+            title: 'Do a flip',
+            description: 'Performs one or more flips in a given direction.',
+            inputSchema: z.object({
+                direction: z.enum(['forward', 'backward']).describe('Which way to flip'),
+                count: z
+                    .number()
+                    .int()
+                    .min(1)
+                    .max(5)
+                    .default(1)
+                    .describe('How many flips to perform, 1 to 5')
+            }),
+            annotations: { readOnlyHint: true }
         },
-        async () => ({
-            content: [{ type: 'text', text: 'Barrel roll complete. Nothing was harmed.' }]
+        async ({ direction, count }) => ({
+            content: [
+                {
+                    type: 'text',
+                    text: `Performed ${count} ${direction} flip${count === 1 ? '' : 's'}. Stuck the landing.`
+                }
+            ]
         })
     );
 
