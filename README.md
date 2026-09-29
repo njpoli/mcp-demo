@@ -43,7 +43,7 @@ Walk them in order.
 | `02-first-tool` | `registerTool` with no arguments. One function becomes one tool. |
 | `03-tool-args` | A tool with a Zod schema. One schema does three jobs: published JSON Schema, runtime validation, and TypeScript types in the handler. |
 | `04-real-data` | The `find-games` tool over `data/games.json`. Two optional arguments, real data, still no network. |
-| `05-continue` | `.continue/mcpServers/gameshelf.yaml` — registers the server with the Continue.dev VS Code extension so a real model can call it. |
+| `05-continue` | `.continue/mcpServers/gameshelf.yaml` — registers the server with the Continue.dev VS Code extension so a real model can call it. Plus `cline/` for the same thing in Cline. |
 | `06-http` | The same server over Streamable HTTP instead of stdio. `src/server.ts` holds the server, `src/index.ts` and `src/http.ts` are the two transports. |
 | `main` | `06-http` plus this README. |
 
@@ -91,6 +91,11 @@ workspace, then switch Continue to **Agent mode** — MCP tools are invisible in
 and Edit mode. Ask it something like *"there are five of us and about an hour before
 dinner — what should we play?"* and watch it pick the tool, and the arguments, on its
 own. You never mention `find-games`.
+
+**In Cline** (branch `05-continue` onward): Cline keeps its MCP servers in one global
+file instead of a project one, so there is nothing here it picks up by itself. Copy
+`cline/mcp.json` into Cline's settings file and set `cwd` to this folder —
+`cline/README.md` has the paths and the two things that trip people up.
 
 ## Versions
 
