@@ -1,21 +1,33 @@
-// A real MCP server that exposes absolutely nothing. Run: npm run dev
+// One tool, no arguments. Inspect it: npm run inspect
 //
-// It prints one line and then sits there. That's correct — an stdio server is
-// waiting on stdin for a client to start the conversation.
+// A Tools section has appeared that wasn't there last branch, and registering
+// the tool is what made the server advertise one. No route table, no manifest,
+// no hand-written schema — a tool is a function you registered.
 //
-// In the Inspector (npm run inspect) it connects and names itself, and there is
-// no Tools section at all: capabilities are derived from what you register, so a
-// server with nothing registered doesn't advertise tools in the first place.
+// (Switched branches with the Inspector already open? Toggle the connection off
+// and back on. The tool list is read once, at connect time.)
 
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 
-// A factory, not an instance — the SDK builds one server per connection.
 function createServer(): McpServer {
-    return new McpServer({ name: 'gameshelf', version: '1.0.0' });
+    const server = new McpServer({ name: 'gameshelf', version: '1.0.0' });
+
+    server.registerTool(
+        'do-a-barrel-roll',
+        {
+            title: 'Do a barrel roll',
+            description: 'Performs a single celebratory barrel roll and reports back.',
+            annotations: { readOnlyHint: true, idempotentHint: true }
+        },
+        async () => ({
+            content: [{ type: 'text', text: 'Barrel roll complete. Nothing was harmed.' }]
+        })
+    );
+
+    return server;
 }
 
 serveStdio(createServer);
 
-// stderr, not stdout. stdout is the protocol channel from here on.
 console.error('gameshelf MCP server running on stdio');
