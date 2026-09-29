@@ -1,0 +1,24 @@
+# Continue launches this from the workspace root, so the relative path resolves.
+#
+# MCP tools only work in Continue's AGENT mode. In Chat or Edit mode the model
+# never sees them and just answers from training data.
+#
+# Any other host can run the same server by pointing at the same command.
+# Continue also reads Claude/Cursor-style JSON at .continue/mcpServers/mcp.json:
+#
+#   { "mcpServers": { "gameshelf": { "command": "npx",
+#                                    "args": ["tsx", "src/index.ts"] } } }
+#
+# Don't ship both files, or the server gets registered twice.
+
+name: Games shelf server
+version: 0.0.1
+schema: v1
+
+mcpServers:
+  - name: gameshelf
+    type: stdio
+    command: npx
+    args:
+      - tsx
+      - src/index.ts
