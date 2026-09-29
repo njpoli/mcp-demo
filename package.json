@@ -1,0 +1,25 @@
+{
+  "name": "mcp-gameshelf-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A tiny MCP server, built one branch at a time for a live demo",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "inspect": "mcp-inspector tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.1.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^2.8.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
