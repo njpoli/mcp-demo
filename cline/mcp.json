@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "gameshelf": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["tsx", "src/index.ts"],
+      "cwd": "/absolute/path/to/mcp-demo"
+    }
+  }
+}
